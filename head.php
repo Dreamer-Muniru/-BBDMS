@@ -78,7 +78,7 @@ a.logo2{
     <a href="about_us.php"  <?php if($active=='about') echo "class='act'"; ?> >About</a>
     <a href="why_donate_blood.php"  <?php if($active=='why') echo "class='act'"; ?>>Why Donate Blood</a>
       <a href="donate_blood.php"  <?php if($active=='donate') echo "class='act'"; ?>>Become A Donor</a>
-      <a href="need_blood.php" <?php if($active=='need') echo "class='act'"; ?>>Need Blood</a>
+      <a href="need_blood.php" <?php if($active=='need') echo "class='act'"; ?>>Search Blood</a>
       <a href="contact_us.php" <?php if($active=='contact') echo "class='act'"; ?>>Contact Us</a>
     </div>
   </div>
