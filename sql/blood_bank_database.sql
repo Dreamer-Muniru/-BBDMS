@@ -13,6 +13,20 @@ donor_blood varchar(10) NOT NULL,
 donor_address varchar(100) NOT NULL,
 Primary key(donor_id)
 );
+
+-- Requester information
+create table requester_details(
+requester_id int auto_increment NOT NULL,
+requester_name varchar(50) NOT NULL,
+requester_age int(60) NOT NULL,
+requester_gender varchar(10) NOT NULL,
+blood_requested varchar(10) NOT NULL,
+requester_address varchar(100) NOT NULL,
+Primary key(requester_id)
+);
+
+
+-- end of requester information
 /*create table admin_info in which all admin information gets stored.*/
 create table admin_info(
 admin_id int(10) NOT NULL UNIQUE AUTO_INCREMENT,
@@ -163,5 +177,5 @@ CREATE TABLE query_stat(
   
   insert into query_stat(id,query_type)
   values('1',"Read"),
-  ('2',"Pending");
+  ('2',"Pending")
   

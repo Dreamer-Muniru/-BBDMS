@@ -28,7 +28,17 @@
     font-size: 19px;
     color: #fff;
   }
+  .heading{
+    margin-top: 30px;
+    font-size: 40px;
+    text-align: center;
+    fontweight:bold;
+    text-decoration: underline;
+  }
 
+  .carousel-inner{
+    margin-top: -50px;
+  }
 </style>
 </head>
 
@@ -73,7 +83,7 @@ include('head.php'); ?>
   </div>
 <br>
        
-        <h2>Blood Donor</h2>
+        <h2 class="heading">Blood Donor</h2>
 
         <div class="row">
           <?php

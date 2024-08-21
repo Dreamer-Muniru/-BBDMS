@@ -11,18 +11,41 @@
 
 </head>
 <style>
-  .blood_compa img{
-    margin-left: -80px;
-  }
+  
   .about_us img{
     width: 100%;
-    height: 100px;
+    height: 120px;
   }
-  .banner_img img{
-    width: 100%;
-    height: 400px;
-    margin-bottom: 30px;
+
+  .about_us img{
+    margin-top: 100px;
   }
+  .doner_corner{
+    width:140px;
+    height: 40px;
+    justify-content: center;
+    background-color: #7FB3D5;
+    padding: 5px;
+    border-radius: 10px;
+    }
+    .doner_corner a{
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      padding: 5px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .doner_corner:hover{
+      background-color: grey;
+    }
+    .doner_corner a:{
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+
+
 </style>
 <body>
 
@@ -36,82 +59,14 @@ include('head.php');
 
 <div id="page-container" style="margin-top:50px; position: relative;min-height: 84vh;">
   <div class="container">
-    <div class="banner_img">
-      <img src="image/banner15.jpeg" alt="banner image">
+    <div class="doner_corner">
+      <a href="doner_corner.php">Doner Corner</a>
     </div>
+    <!-- <div class="banner_img">
+      <img src="image/banner15.jpeg" alt="banner image">
+    </div> -->
   <div id="content-wrap" style="padding-bottom:50px;">
-    <!-- section tips -->
-    <h1 style="text-align:center;font-size:45px;">Welcome to BloodBank & Donor Management System</h1>
-<br>
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <h4 class="card-header card bg-info text-white" >The need for blood</h4>
-
-                        <p class="card-body overflow-auto" style="padding-left:2%;height:120px;text-align:left;">
-                          <?php
-                            include 'conn.php';
-                            $sql=$sql= "select * from pages where page_type='needforblood'";
-                            $result=mysqli_query($conn,$sql);
-                            if(mysqli_num_rows($result)>0)   {
-                                while($row = mysqli_fetch_assoc($result)) {
-                                  echo $row['page_data'];
-                                }
-                              }
-
-                           ?>
-                         </p>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <h4 class="card-header card bg-info text-white">Blood Tips</h4>
-
-                    <p class="card-body overflow-auto" style="padding-left:2%;height:120px;text-align:left;">
-                      <?php
-                        include 'conn.php';
-                        $sql=$sql= "select * from pages where page_type='bloodtips'";
-                        $result=mysqli_query($conn,$sql);
-                        if(mysqli_num_rows($result)>0)   {
-                            while($row = mysqli_fetch_assoc($result)) {
-                              echo $row['page_data'];
-                            }
-                          }
-
-                       ?>
-                     </p>
-
-                        </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <h4 class="card-header card bg-info text-white" >Who you could Help</h4>
-
-                    <p class="card-body overflow-auto" style="padding-left:2%;height:120px;text-align:left;">
-                      <?php
-                        include 'conn.php';
-                        $sql=$sql= "select * from pages where page_type='whoyouhelp'";
-                        $result=mysqli_query($conn,$sql);
-                        if(mysqli_num_rows($result)>0)   {
-                            while($row = mysqli_fetch_assoc($result)) {
-                              echo $row['page_data'];
-                            }
-                          }
-                       ?>
-                     </p>
-
-
-                      </div>
-            </div>
-</div>
-
-    <!--End of section tips  -->
-
-<!-- blood compatibility -->
- <div class="blood_compa">
-      <h1>Blood Compatibility</h1>
-      <img src="image/blood_compatability.jpeg" style="height:500px" alt="Error" >
- </div>
+    
 
 <div class="row">
     <div class="col-lg-6">
@@ -131,7 +86,7 @@ include('head.php');
 
     </div>
     <div class="col-lg-6 about_us">
-        <img class="img-fluid rounded" src="image\_107317099_blooddonor976.jpg" style="height:400px" alt="error"  >
+        <img class="img-fluid rounded" src="image\banner15.jpeg" style="height:250px" alt="error"  >
     </div>
 </div>
 </div></div>
