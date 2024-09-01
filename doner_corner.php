@@ -38,7 +38,7 @@ include('head.php');
     </div> -->
   <div id="content-wrap" style="padding-bottom:50px;">
     <!-- section tips -->
-    <h1 style="text-align:center;font-size:45px;">Welcome to BloodBank & Donor Management System</h1>
+    <h1 style="text-align:center;font-size:45px;">Welcome to Donor Corner</h1>
 <br>
         <div class="row">
             <div class="col-lg-4 mb-4">
