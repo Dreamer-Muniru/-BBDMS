@@ -50,7 +50,7 @@ include 'conn.php';
       <div class="row">
         <div class="col-md-12 lg-12 sm-12">
 
-          <h1 class="page-title">Donor List</h1>
+          <h1 class="page-title">Blood Request List</h1>
 
         </div>
 

@@ -1,5 +1,6 @@
-create database blood_donation; /* creating database*/
-use blood_donation;
+/* creating database*/
+create database blood_donation; 
+Use blood_donation;
 
 /*create table donor_details in which all donor information gets stored.*/
 create table donor_details(
@@ -163,7 +164,7 @@ timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
 
 insert into contact_query (query_name,query_mail,query_number,query_message) values
-("Anuj","anuj@gmail.com","9923471025","I need O+ Blood.");
+("Maher","maher@gmail.com","233 509161546","I need O+ Blood.");
 
 update contact_query set query_status="1" where query_id="1";
 
@@ -174,8 +175,15 @@ CREATE TABLE query_stat(
   PRIMARY KEY (id)
   );
   
+  -- create user table
+  CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
   
   insert into query_stat(id,query_type)
   values('1',"Read"),
-  ('2',"Pending")
+  ('6',"Pending")
   

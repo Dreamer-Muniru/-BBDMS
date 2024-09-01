@@ -1,3 +1,7 @@
+<?php
+  include 'conn.php';
+  include 'session.php';
+  ?>
 <html>
 
 <head>
@@ -72,16 +76,27 @@ a.logo2{
 </head>
 
 <body>
-  <div class="header">
-    <a href="home.php" class="logo"<?php if($active=='home') echo "class='logo2'"; ?>>BBDMS </a>
+ 
+<div class="header">
+    <a href="home.php" class="logo"<?php if($active=='home') echo "class='logo2'"; ?>>BBDMS</a>
     <div class="header-right">
-    <a href="about_us.php"  <?php if($active=='about') echo "class='act'"; ?> >About</a>
-    <a href="why_donate_blood.php"  <?php if($active=='why') echo "class='act'"; ?>>Why Donate Blood</a>
-      <a href="donate_blood.php"  <?php if($active=='donate') echo "class='act'"; ?>>Become A Donor</a>
-      <a href="need_blood.php" <?php if($active=='need') echo "class='act'"; ?>>Search Blood</a>
-      <a href="contact_us.php" <?php if($active=='contact') echo "class='act'"; ?>>Contact Us</a>
+        <a href="about_us.php" <?php if($active=='about') echo "class='act'"; ?>>About</a>
+        <a href="why_donate_blood.php" <?php if($active=='why') echo "class='act'"; ?>>Why Donate Blood</a>
+        <a href="contact_us.php" <?php if($active=='contact') echo "class='act'"; ?>>Contact Us</a>
+
+        <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) { ?>
+            <a href="login.php" <?php if($active=='login') echo "class='act'"; ?>>Login</a>
+        <?php } ?>
+
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+            <a href="donate_blood.php" <?php if($active=='donate') echo "class='act'"; ?>>Become A Donor</a>
+            <a href="need_blood.php" <?php if($active=='need') echo "class='act'"; ?>>Search Blood</a>
+            <a href="logout.php" style="color:#D35400;">Logout</a>
+        <?php } ?>
+      
     </div>
-  </div>
+</div>
+
 
 </body>
 </html>

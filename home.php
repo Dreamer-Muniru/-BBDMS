@@ -43,6 +43,8 @@
 </head>
 
 <body>
+
+
 <div class="header">
 <?php
 $active="home";
@@ -159,15 +161,16 @@ include('head.php'); ?>
 
                ?></p>
               </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <a class="btn btn-lg btn-secondary btn-block" href="donate_blood.php" style="align:center; background-color:#7FB3D5;color:#273746 ">Become a Donor </a>
-            </div>
+            </div> -->
         </div>
 
     </div>
   </div>
   <?php include('footer.php');?>
 </div>
+
 
 </body>
 

@@ -23,7 +23,7 @@
 
             </div>
       </div>
-      <div class="card" style="height:250px; background-image:url('admin_image/glossy1.jpg');">
+      <div class="card" style="height:250px;">
           <div class="card-body">
 
       <div class="row justify-content-lg-center justify-content-mb-center" >

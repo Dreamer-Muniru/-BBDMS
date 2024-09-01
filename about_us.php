@@ -20,30 +20,8 @@
   .about_us img{
     margin-top: 100px;
   }
-  .doner_corner{
-    width:140px;
-    height: 40px;
-    justify-content: center;
-    background-color: #7FB3D5;
-    padding: 5px;
-    border-radius: 10px;
-    }
-    .doner_corner a{
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
-      padding: 5px;
-      text-align: center;
-      font-size: 18px;
-    }
-    .doner_corner:hover{
-      background-color: grey;
-    }
-    .doner_corner a:{
-      font-size: 20px;
-      color: #fff;
-    }
-  }
+
+
 
 
 </style>
@@ -59,9 +37,7 @@ include('head.php');
 
 <div id="page-container" style="margin-top:50px; position: relative;min-height: 84vh;">
   <div class="container">
-    <div class="doner_corner">
-      <a href="doner_corner.php">Doner Corner</a>
-    </div>
+    
     <!-- <div class="banner_img">
       <img src="image/banner15.jpeg" alt="banner image">
     </div> -->
