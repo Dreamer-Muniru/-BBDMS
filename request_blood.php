@@ -1,63 +1,148 @@
 <html>
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<style>
+
+#sidebar{position:relative;margin-top:-20px}
+#content{position:relative;margin-left:210px}
+@media screen and (max-width: 600px) {
+  #content {
+    position:relative;margin-left:auto;margin-right:auto;
+  }
+}
+  #he{
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 3px;
+      align:center
+  }
+</style>
 </head>
-
-<body>
-
-
-<?php 
-$active ='request_blood';
-include('head.php');
+<?php
+include 'conn.php';
+include 'session.php';
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 ?>
-
-<div id="page-container" style="margin-top:50px; position: relative;min-height: 84vh;">
-  <div class="container">
-  <div id="content-wrap" style="padding-bottom:50px;">
-<div class="row">
-    <div class="col-lg-6">
-        <h1 class="mt-4 mb-3">Request for Blood</h1>
-        <form name="sentMessage"  method="post">
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Full Name:</label>
-                    <input type="text" class="form-control" id="name" name="fullname" required>
-                    <p class="help-block"></p>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Phone Number:</label>
-                    <input type="tel" class="form-control" id="phone" name="contactno"  required >
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Email Address:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-            </div>
-            <div class="control-group form-group">
-                <div class="controls">
-                    <label>Reason:</label>
-                    <textarea rows="4" cols="100" class="form-control" id="message" name="message" required  maxlength="999" style="resize:none"></textarea>
-                </div>
-            </div>
-            <button type="submit" name="send"  class="btn btn-primary">Submit</button>
-        </form>
+<body style="color:black">
+<div id="header">
+<?php include 'header.php'; ?>
+</div>
+<div id="sidebar">
+<?php $active="list"; include 'sidebar.php'; ?>
+</div>
+<div id="content" >
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 lg-12 sm-12">
+          <h1 class="page-title">Blood Request List</h1>
+        </div>
       </div>
-</div>
+      <hr>
+      <?php
+        include 'conn.php';
 
+        $limit = 10;
+        if(isset($_GET['page'])){
+          $page = $_GET['page'];
+        }else{
+          $page = 1;
+        }
+        $offset = ($page - 1) * $limit;
+        $count=$offset+1;
+
+        $sql = "SELECT * FROM blood_request LIMIT {$offset}, {$limit}";
+        $result = mysqli_query($conn, $sql);
+
+        if(mysqli_num_rows($result) > 0) {
+      ?>
+
+      <div class="table-responsive">
+        <table class="table table-bordered" style="text-align:center">
+          <thead style="text-align:center">
+            <th style="text-align:center">S.no</th>
+            <th style="text-align:center">Full Name</th>
+            <th style="text-align:center">Phone Number</th>
+            <th style="text-align:center">Email</th>
+            <th style="text-align:center">Reason</th>
+            <th style="text-align:center">Request Date</th>
+            <th style="text-align:center">Action</th>
+          </thead>
+          <tbody>
+            <?php while($row = mysqli_fetch_assoc($result)) { ?>
+              <tr>
+                <td><?php echo $count++; ?></td>
+                <td><?php echo $row['fullname']; ?></td>
+                <td><?php echo $row['contactno']; ?></td>
+                <td><?php echo $row['email']; ?></td>
+                <td><?php echo $row['reason']; ?></td>
+                <td><?php echo $row['request_date']; ?></td>
+                <td id="he" style="width:100px">
+                  <a style="background-color:aqua" href='delete_request.php?id=<?php echo $row['id']; ?>'> Delete </a>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
+      <?php } ?>
+
+      <div class="table-responsive" style="text-align:center;align:center">
+        <?php
+        $sql1 = "SELECT * FROM blood_request";
+        $result1 = mysqli_query($conn, $sql1) or die("Query Failed.");
+
+        if(mysqli_num_rows($result1) > 0){
+
+          $total_records = mysqli_num_rows($result1);
+          $total_page = ceil($total_records / $limit);
+
+          echo '<ul class="pagination admin-pagination">';
+          if($page > 1){
+            echo '<li><a href="blood_request_list.php?page='.($page - 1).'">Prev</a></li>';
+          }
+          for($i = 1; $i <= $total_page; $i++){
+            if($i == $page){
+              $active = "active";
+            }else{
+              $active = "";
+            }
+            echo '<li class="'.$active.'"><a href="blood_request_list.php?page='.$i.'">'.$i.'</a></li>';
+          }
+          if($total_page > $page){
+            echo '<li><a href="blood_request_list.php?page='.($page + 1).'">Next</a></li>';
+          }
+
+          echo '</ul>';
+        }
+        ?>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+<?php }
+else {
+    echo '<div class="alert alert-danger"><b> Please Login First To Access Admin Portal.</b></div>';
+    ?>
+    <form method="post" name="" action="login.php" class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-8 col-sm-offset-4" style="float:left">
+          <button class="btn btn-primary" name="submit" type="submit">Go to Login Page</button>
+        </div>
+      </div>
+    </form>
+<?php } ?>
 </body>
-
 </html>

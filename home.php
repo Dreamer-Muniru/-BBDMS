@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,56 +40,67 @@
   .carousel-inner{
     margin-top: -50px;
   }
+  .login_request{
+    padding: 5px;
+    background-color: #D35400;
+    width: 150px;
+    margin-left: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  .blood_group{
+    margin-top: 50px;
+  }
 </style>
 </head>
 
 <body>
 
-
-<div class="header">
-<?php
-$active="home";
-include('head.php'); ?>
-
-</div>
-<?php include'ticker.php'; ?>
-
-  <div id="page-container" style="margin-top:50px; position: relative; min-height: 84vh;">
-    <div class="container">
-    <div id="content-wrap"style="padding-bottom:75px;">
-  <div id="demo" class="carousel slide" data-ride="carousel">
-
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-      <li data-target="#demo" data-slide-to="0" class="active"></li>
-      <li data-target="#demo" data-slide-to="1"></li>
-    </ul>
-
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="image\banner12.jpeg" alt="image\banner12.jpeg" width="100%" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src="image\banner9.jpeg" alt="image\banner15.jpeg" width="100%" height="500">
-      </div>
+    <div class="header">
+    <?php
+    $active="home";
+    include('head.php'); ?>
 
     </div>
+    <?php include'ticker.php'; ?>
 
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-  </div>
-<br>
+      <div id="page-container" style="margin-top:50px; position: relative; min-height: 84vh;">
+        <div class="container">
+        <div id="content-wrap"style="padding-bottom:75px;">
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="image\banner12.jpeg" alt="image\banner12.jpeg" width="100%" height="500">
+          </div>
+          <div class="carousel-item">
+            <img src="image\banner9.jpeg" alt="image\banner15.jpeg" width="100%" height="500">
+          </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    <br>
        
         <h2 class="heading">Blood Donor</h2>
 
         <div class="row">
-          <?php
+        <?php
             include 'conn.php';
             $sql= "select * from donor_details join blood where donor_details.donor_blood=blood.blood_id order by rand() limit 6";
             $result=mysqli_query($conn,$sql);
@@ -110,16 +122,24 @@ include('head.php'); ?>
                   </p>
 
                 </div>
-                <a href="request_blood.php" class="request_btn" <?php if($active=='need') echo "class='act'"; ?>>Request</a>
-              </div>
+                <!-- I'm making this link visible if users aren't login -->
+                <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) { ?>
+                  <a href="login.php" style="color:#fff;" class="login_request">Login to Request</a>
+        <?php } ?>
+          <!-- This part made is visible for users to request when they are login -->
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+          <a href="request_blood.php" class="request_btn" <?php if($active=='need') echo "class='act'"; ?>>Request</a>            
+        <?php } ?>
+                
         </div>
-      <?php }} ?>
+      
 </div>
+<?php }} ?>
 <br>
         <!-- /.row -->
 
         <!-- Features Section -->
-        <div class="row">
+        <div class="row blood_group">
             <div class="col-lg-6">
                 <h2>BLOOD GROUPS</h2>
                 <p>
