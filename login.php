@@ -14,7 +14,7 @@
         .register_btn{
             justify-content: center;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         .register_btn h3{
             text-align: center
